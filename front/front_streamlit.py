@@ -27,7 +27,7 @@ def get_predictions(image_file):
 
 def main():
     st.header("osteoarthritis prediction :")
-    st.text("""Upload your xray picture (jpeg format only)""")
+    st.text("""Upload your xray picture""")
     uploaded_file = st.file_uploader("", type=["jpg", "png"])
     if uploaded_file is not None:
         st.image(uploaded_file.getvalue())
