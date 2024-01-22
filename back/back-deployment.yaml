@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back-flask
+  template:
+    metadata:
+      labels:
+        app: back-flask
+    spec:
+      containers:
+        - name: back-flask-container
+          image: back:v001
+          ports:
+            - containerPort: 9797
+          resources:
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
+          env: 
+            - name: TF_SERVING_HOST
+              value: model-service.default.svc.cluster.local:8500 

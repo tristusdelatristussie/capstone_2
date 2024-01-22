@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front-streamlit
+  template:
+    metadata:
+      labels:
+        app: front-streamlit
+    spec:
+      containers:
+        - name: front-streamlit-container
+          image: front:v001
+          ports:
+            - containerPort: 8501
+          env:
+            - name: BACKEND_URL
+              value: back-service.default.svc.cluster.local:9797
